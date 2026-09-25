@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Tejaswini ✦</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="loader"></div>
+    <p>Preparing something special...</p>
+  </div>
+
+  <!-- BACKGROUND -->
+  <canvas id="particles"></canvas>
+  <canvas id="petals"></canvas>
+
+  <!-- INTRO -->
+  <section id="intro">
+
+    <div class="intro-content">
+
+      <div class="eyebrow">A PRIVATE LITTLE MOMENT</div>
+
+      <h1>
+        A Little Surprise
+        <span>For You</span>
+      </h1>
+
+      <p class="subtitle">
+        Something special is waiting for you.
+      </p>
+
+      <button id="revealBtn">
+        <span>Click Me</span>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- BIRTHDAY -->
+  <section id="birthday">
+
+    <div class="birthday-content">
+
+      <p class="eyebrow reveal">
+        TODAY IS YOUR DAY
+      </p>
+
+      <h2 class="birthday-title reveal">
+        <span>Happy Birthday</span>
+        <strong>TEJASWINI</strong>
+      </h2>
+
+
+      <!-- PHOTO -->
+      <div class="photo-frame reveal">
+
+        <div class="frame-border"></div>
+
+        <div class="photo-container">
+
+          <img
+            src="assets/tejaswini.jpg"
+            alt="Tejaswini"
+            id="birthdayPhoto"
+          >
+
+          <div class="photo-light"></div>
+
+          <div class="photo-placeholder">
+            <span>YOUR PHOTO</span>
+            <small>assets/tejaswini.jpg</small>
+          </div>
+
+        </div>
+
+        <p class="caption">
+          A memory made beautiful
+        </p>
+
+      </div>
+
+
+      <!-- MESSAGE -->
+      <div class="message reveal">
+
+        <h3>
+          Happy Birthday, Tejaswini.
+        </h3>
+
+        <p>
+          May your days be filled with beautiful moments,
+          peace, happiness, and countless reasons to smile.
+        </p>
+
+        <small>
+          TODAY IS ALL ABOUT CELEBRATING YOU.
+        </small>
+
+      </div>
+
+
+      <!-- ENDING -->
+      <div class="ending reveal">
+
+        <p>
+          Keep smiling.<br>
+          Keep shining.<br>
+          And keep being you.
+        </p>
+
+        <div class="ending-line"></div>
+
+        <strong>
+          Happy Birthday, TEJASWINI.
+        </strong>
+
+      </div>
+
+
+      <footer>
+        WITH A LITTLE EXTRA MAGIC ✦
+      </footer>
+
+    </div>
+
+  </section>
+
+
+  <!-- MUSIC -->
+  <button id="musicBtn" aria-label="Music">
+    ♪
+  </button>
+
+  <audio
+    id="music"
+    src="assets/birthday-music.mp3"
+    loop
+  ></audio>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #030303;
+  --white: #f5f5f3;
+  --silver: #c5c5c1;
+  --grey: #777774;
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: Inter, Arial, sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
+
+body {
+  cursor: none;
+}
+
+
+/* =========================
+   PRELOADER
+========================= */
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #020202;
+
+  transition:
+    opacity 1s ease,
+    visibility 1s ease;
+}
+
+#preloader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#preloader p {
+  margin-top: 20px;
+
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  color: #777;
+}
+
+.loader {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  border: 1px solid #333;
+  border-top-color: white;
+
+  animation: spin 1s linear infinite;
+}
+
+
+/* =========================
+   CANVAS
+========================= */
+
+#particles,
+#petals {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+}
+
+#particles {
+  z-index: 1;
+}
+
+#petals {
+  z-index: 10;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+#intro {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,255,255,.045),
+      transparent 35%
+    ),
+    #030303;
+
+  transition:
+    opacity 1s cubic-bezier(.16,1,.3,1),
+    transform 1s cubic-bezier(.16,1,.3,1);
+
+  z-index: 2;
+}
+
+.intro-content {
+  width: 90%;
+  max-width: 900px;
+
+  animation: introReveal 1.5s ease forwards;
+}
+
+.eyebrow {
+  margin-bottom: 25px;
+
+  color: #777;
+  font-size: 9px;
+
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: var(--serif);
+
+  font-size: clamp(3.5rem, 9vw, 8rem);
+
+  font-weight: 300;
+
+  line-height: .82;
+
+  letter-spacing: -3px;
+
+  color: #eee;
+}
+
+h1 span {
+  display: block;
+
+  color: #a5a5a1;
+
+  font-style: italic;
+}
+
+.subtitle {
+  margin: 35px auto;
+
+  color: #777;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+#revealBtn {
+  position: relative;
+
+  min-width: 180px;
+
+  padding: 17px 35px;
+
+  border: 1px solid rgba(255,255,255,.5);
+
+  border-radius: 100px;
+
+  background: rgba(0,0,0,.6);
+
+  color: white;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition:
+    transform .4s ease,
+    border-color .4s ease,
+    box-shadow .4s ease;
+}
+
+#revealBtn::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 50%;
+  height: 100%;
+
+  background: rgba(255,255,255,.15);
+
+  transform: skewX(-20deg);
+
+  transition: left .8s ease;
+}
+
+#revealBtn:hover {
+  transform: scale(1.04);
+
+  border-color: white;
+
+  box-shadow:
+    0 0 35px rgba(255,255,255,.1);
+}
+
+#revealBtn:hover::before {
+  left: 150%;
+}
+
+#revealBtn:active {
+  transform: scale(.96);
+}
+
+#revealBtn span {
+  position: relative;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================
+   BIRTHDAY
+========================= */
+
+#birthday {
+  position: relative;
+
+  min-height: 100vh;
+
+  padding:
+    120px 20px
+    80px;
+
+  display: flex;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(255,255,255,.035),
+      transparent 30%
+    ),
+    #030303;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 1.5s ease,
+    visibility 1.5s ease;
+
+  z-index: 2;
+}
+
+#birthday.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.birthday-content {
+  width: 100%;
+  max-width: 900px;
+
+  text-align: center;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.birthday-title {
+  margin-bottom: 55px;
+
+  font-family: var(--serif);
+
+  font-weight: 300;
+
+  line-height: .8;
+}
+
+.birthday-title span {
+  display: block;
+
+  margin-bottom: 15px;
+
+  color: #aaa;
+
+  font-size: clamp(1.7rem, 4vw, 3rem);
+}
+
+.birthday-title strong {
+  display: block;
+
+  color: #eee;
+
+  font-size: clamp(4rem, 11vw, 9rem);
+
+  font-weight: 300;
+
+  letter-spacing: 5px;
+}
+
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(30px);
+}
+
+#birthday.show .reveal {
+  animation: revealUp 1.2s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+#birthday.show .reveal:nth-child(1) {
+  animation-delay: .2s;
+}
+
+#birthday.show .reveal:nth-child(2) {
+  animation-delay: .35s;
+}
+
+#birthday.show .reveal:nth-child(3) {
+  animation-delay: .8s;
+}
+
+#birthday.show .reveal:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+#birthday.show .reveal:nth-child(5) {
+  animation-delay: 2.3s;
+}
+
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo-frame {
+  position: relative;
+
+  width: min(440px, 88vw);
+
+  margin: auto auto 65px;
+
+  padding: 10px;
+
+  background: #050505;
+
+  border: 1px solid rgba(255,255,255,.2);
+
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.8),
+    0 0 50px rgba(255,255,255,.025);
+
+  overflow: hidden;
+}
+
+.frame-border {
+  position: absolute;
+
+  inset: -1px;
+
+  border: 1px solid white;
+
+  clip-path: inset(0 100% 0 0);
+}
+
+#birthday.show .frame-border {
+  animation:
+    drawFrame 1.4s .8s ease forwards;
+}
+
+.photo-container {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 4 / 5;
+
+  overflow: hidden;
+
+  background: #080808;
+}
+
+#birthdayPhoto {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  opacity: 0;
+
+  transform: scale(.96);
+
+  filter: grayscale(100%);
+}
+
+#birthday.show #birthdayPhoto {
+  animation:
+    photoReveal 1.5s 1s cubic-bezier(.16,1,.3,1)
+    forwards;
+}
+
+.photo-placeholder {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #555;
+
+  background: #070707;
+}
+
+.photo-placeholder span {
+  font-size: 10px;
+
+  letter-spacing: 4px;
+}
+
+.photo-placeholder small {
+  font-size: 8px;
+
+  color: #333;
+}
+
+.photo-container.photo-loaded .photo-placeholder {
+  display: none;
+}
+
+.photo-light {
+  position: absolute;
+
+  top: -20%;
+  left: -50%;
+
+  width: 25%;
+  height: 150%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.18),
+      transparent
+    );
+
+  transform: rotate(12deg);
+
+  opacity: 0;
+}
+
+#birthday.show .photo-light {
+  animation:
+    lightSweep 1.7s 1.6s ease forwards;
+}
+
+.caption {
+  padding-top: 15px;
+
+  color: #666;
+
+  font-size: 8px;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+  max-width: 700px;
+
+  margin: auto;
+
+  font-family: var(--serif);
+
+  color: #aaa;
+
+  font-size: clamp(1.2rem, 2.6vw, 1.7rem);
+
+  line-height: 1.45;
+}
+
+.message h3 {
+  margin-bottom: 15px;
+
+  color: #eee;
+
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+
+  font-weight: 400;
+}
+
+.message small {
+  display: block;
+
+  margin-top: 30px;
+
+  font-family: var(--sans);
+
+  font-size: 8px;
+
+  letter-spacing: 4px;
+
+  color: #666;
+}
+
+
+/* =========================
+   ENDING
+========================= */
+
+.ending {
+  margin-top: 130px;
+
+  font-family: var(--serif);
+
+  font-size: clamp(1.4rem, 3vw, 2rem);
+
+  line-height: 1.35;
+
+  color: #aaa;
+}
+
+.ending-line {
+  width: 60px;
+  height: 1px;
+
+  margin: 30px auto;
+
+  background: #555;
+}
+
+.ending strong {
+  color: #eee;
+
+  font-size: 1.1rem;
+
+  letter-spacing: 3px;
+
+  font-weight: 400;
+}
+
+footer {
+  margin-top: 100px;
+
+  color: #444;
+
+  font-size: 7px;
+
+  letter-spacing: 5px;
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+#musicBtn {
+  position: fixed;
+
+  right: 22px;
+  bottom: 22px;
+
+  z-index: 100;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  border: 1px solid #555;
+
+  background: rgba(0,0,0,.8);
+
+  color: #ccc;
+
+  cursor: pointer;
+
+  transition: .3s ease;
+}
+
+#musicBtn:hover {
+  border-color: white;
+
+  transform: scale(1.08);
+}
+
+#musicBtn.active {
+  color: white;
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,.1);
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes introReveal {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawFrame {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes photoReveal {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes lightSweep {
+  0% {
+    left: -50%;
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 150%;
+    opacity: 0;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  body {
+    cursor: auto;
+  }
+
+  #intro {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: clamp(3.1rem, 14vw, 5rem);
+    letter-spacing: -2px;
+  }
+
+  .subtitle {
+    max-width: 270px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    line-height: 1.6;
+  }
+
+  #birthday {
+    padding:
+      90px 15px
+      60px;
+  }
+
+  .birthday-title strong {
+    font-size: clamp(3.3rem, 17vw, 6rem);
+
+    letter-spacing: 2px;
+  }
+
+  .photo-frame {
+    width: min(390px, 90vw);
+  }
+
+  .message {
+    padding: 0 10px;
+  }
+
+  .ending {
+    margin-top: 95px;
+  }
+
+  #musicBtn {
+    right: 17px;
+    bottom: 17px;
+  }
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+
+  #particles,
+  #petals {
+    display: none;
+  }
+}
+"use strict";
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const preloader = document.getElementById("preloader");
+const intro = document.getElementById("intro");
+const birthday = document.getElementById("birthday");
+
+const revealBtn = document.getElementById("revealBtn");
+
+const photo = document.getElementById("birthdayPhoto");
+const photoContainer = document.querySelector(".photo-container");
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+const particleCanvas = document.getElementById("particles");
+const petalCanvas = document.getElementById("petals");
+
+const pctx = particleCanvas.getContext("2d");
+const fctx = petalCanvas.getContext("2d");
+
+const reducedMotion =
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+/* =========================
+   PRELOADER
+========================= */
+
+window.addEventListener("load", () => {
+
+  setTimeout(() => {
+
+    preloader.classList.add("hide");
+
+  }, reducedMotion ? 100 : 900);
+
+});
+
+
+/* =========================
+   PHOTO
+========================= */
+
+photo.addEventListener("load", () => {
+
+  if (photo.naturalWidth > 0) {
+    photoContainer.classList.add("photo-loaded");
+  }
+
+});
+
+photo.addEventListener("error", () => {
+
+  photoContainer.classList.remove("photo-loaded");
+
+});
+
+
+/* =========================
+   MUSIC
+========================= */
+
+musicBtn.addEventListener("click", async () => {
+
+  if (music.paused) {
+
+    try {
+
+      await music.play();
+
+      musicBtn.classList.add("active");
+
+    } catch (error) {
+
+      console.log("Music could not start.");
+
+    }
+
+  } else {
+
+    music.pause();
+
+    musicBtn.classList.remove("active");
+
+  }
+
+});
+
+
+/* =========================
+   MAIN CLICK
+========================= */
+
+let opened = false;
+
+revealBtn.addEventListener("click", async () => {
+
+  if (opened) return;
+
+  opened = true;
+
+  /* Start music because this is a real user interaction */
+
+  try {
+
+    await music.play();
+
+    musicBtn.classList.add("active");
+
+  } catch (error) {
+
+    console.log("Music unavailable.");
+  }
+
+
+  /* Button animation */
+
+  revealBtn.style.transform = "scale(.95)";
+
+
+  if (reducedMotion) {
+
+    showBirthday();
+
+    return;
+
+  }
+
+
+  /* Cinematic transition */
+
+  setTimeout(() => {
+
+    intro.style.opacity = "0";
+    intro.style.transform = "scale(.98)";
+
+  }, 150);
+
+
+  setTimeout(() => {
+
+    showBirthday();
+
+  }, 900);
+
+});
+
+
+function showBirthday() {
+
+  birthday.classList.add("show");
+
+  window.scrollTo({
+    top: birthday.offsetTop,
+    behavior: reducedMotion ? "auto" : "smooth"
+  });
+
+  startPetals();
+
+}
+
+
+/* =========================
+   BACKGROUND PARTICLES
+========================= */
+
+let width = window.innerWidth;
+let height = window.innerHeight;
+
+let particles = [];
+
+function resizeCanvas() {
+
+  width = window.innerWidth;
+  height = window.innerHeight;
+
+  const dpr =
+    Math.min(window.devicePixelRatio || 1, 1.5);
+
+  particleCanvas.width = width * dpr;
+  particleCanvas.height = height * dpr;
+
+  petalCanvas.width = width * dpr;
+  petalCanvas.height = height * dpr;
+
+  particleCanvas.style.width = width + "px";
+  particleCanvas.style.height = height + "px";
+
+  petalCanvas.style.width = width + "px";
+  petalCanvas.style.height = height + "px";
+
+  pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  fctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  createParticles();
+
+}
+
+function createParticles() {
+
+  const amount =
+    width < 600 ? 28 : 55;
+
+  particles = [];
+
+  for (let i = 0; i < amount; i++) {
+
+    particles.push({
+
+      x: Math.random() * width,
+
+      y: Math.random() * height,
+
+      size: Math.random() * 1.2 + .2,
+
+      speed:
+        Math.random() * .08 + .02,
+
+      alpha:
+        Math.random() * .25 + .04,
+
+      phase:
+        Math.random() * Math.PI * 2
+
+    });
+
+  }
+
+}
+
+
+function animateParticles() {
+
+  pctx.clearRect(0, 0, width, height);
+
+  particles.forEach(p => {
+
+    p.y -= p.speed;
+
+    p.phase += .01;
+
+    if (p.y < -10) {
+      p.y = height + 10;
+    }
+
+    const opacity =
+      p.alpha *
+      (.7 + Math.sin(p.phase) * .3);
+
+    pctx.beginPath();
+
+    pctx.arc(
+      p.x,
+      p.y,
+      p.size,
+      0,
+      Math.PI * 2
+    );
+
+    pctx.fillStyle =
+      `rgba(230,230,225,${opacity})`;
+
+    pctx.fill();
+
+  });
+
+  requestAnimationFrame(animateParticles);
+
+}
+
+
+/* =========================
+   SILVER / WHITE PETALS
+========================= */
+
+let petals = [];
+
+function createPetal(initial = false) {
+
+  return {
+
+    x: Math.random() * width,
+
+    y: initial
+      ? Math.random() * height
+      : -30,
+
+    size:
+      Math.random() * 5 + 3,
+
+    speed:
+      Math.random() * .7 + .45,
+
+    drift:
+      (Math.random() - .5) * .6,
+
+    rotation:
+      Math.random() * Math.PI * 2,
+
+    spin:
+      (Math.random() - .5) * .025,
+
+    opacity:
+      Math.random() * .4 + .2
+
+  };
+
+}
+
+
+function startPetals() {
+
+  if (reducedMotion) return;
+
+  const amount =
+    width < 600 ? 30 : 55;
+
+  petals = [];
+
+  for (let i = 0; i < amount; i++) {
+
+    petals.push(createPetal(true));
+
+  }
+
+}
+
+
+function animatePetals() {
+
+  fctx.clearRect(0, 0, width, height);
+
+  if (birthday.classList.contains("show")) {
+
+    petals.forEach(p => {
+
+      p.y += p.speed;
+
+      p.x +=
+        p.drift +
+        Math.sin(p.y * .01) * .15;
+
+      p.rotation += p.spin;
+
+
+      if (p.y > height + 30) {
+
+        Object.assign(
+          p,
+          createPetal(false)
+        );
+
+      }
+
+
+      fctx.save();
+
+      fctx.translate(
+        p.x,
+        p.y
+      );
+
+      fctx.rotate(
+        p.rotation
+      );
+
+      fctx.globalAlpha =
+        p.opacity;
+
+
+      const gradient =
+        fctx.createLinearGradient(
+          -p.size,
+          -p.size,
+          p.size,
+          p.size
+        );
+
+      gradient.addColorStop(
+        0,
+        "#ffffff"
+      );
+
+      gradient.addColorStop(
+        1,
+        "#777777"
+      );
+
+      fctx.fillStyle = gradient;
+
+
+      fctx.beginPath();
+
+      fctx.ellipse(
+        0,
+        0,
+        p.size * .45,
+        p.size,
+        0,
+        0,
+        Math.PI * 2
+      );
+
+      fctx.fill();
+
+      fctx.restore();
+
+    });
+
+  }
+
+  requestAnimationFrame(animatePetals);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+
+requestAnimationFrame(
+  animateParticles
+);
+
+requestAnimationFrame(
+  animatePetals
+);
